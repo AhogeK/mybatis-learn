@@ -12,6 +12,9 @@ public class ClassLoaderWrapper {
 
     ClassLoader systemClassLoader;
 
+    /**
+     * 构造器，为系统类加载器赋默认值
+     */
     ClassLoaderWrapper() {
         try {
             systemClassLoader = ClassLoader.getSystemClassLoader();
@@ -57,6 +60,7 @@ public class ClassLoaderWrapper {
                 defaultClassLoader,
                 Thread.currentThread().getContextClassLoader(),
                 getClass().getClassLoader(),
-                systemClassLoader};
+                systemClassLoader
+        };
     }
 }
