@@ -15,10 +15,12 @@ class ClassLoaderWrapperTest {
     private final String CLASS_FOUND = "java.lang.Object";
     private final String CLASS_NOT_FOUND = "some.random.class.that.does.not.Exist";
     private ClassLoaderWrapper wrapper;
+    private ClassLoader loader;
 
     @BeforeEach
     void beforeClassLoaderWrapperTest() {
         wrapper = new ClassLoaderWrapper();
+        loader = getClass().getClassLoader();
     }
 
     @Test
@@ -30,5 +32,10 @@ class ClassLoaderWrapperTest {
     void classForNameNotFound() {
         Assertions.assertThrows(ClassNotFoundException.class,
                 () -> assertNotNull(wrapper.classForName(CLASS_NOT_FOUND)));
+    }
+
+    @Test
+    void classForNameWithClassLoader() throws ClassNotFoundException {
+        assertNotNull(wrapper.classForName(CLASS_FOUND, loader));
     }
 }

@@ -34,6 +34,18 @@ public class ClassLoaderWrapper {
     }
 
     /**
+     * 通过指定的类加载器在类路径获取类（或者加载失败）
+     *
+     * @param name        - 需要找的类名
+     * @param classLoader - 首要要尝试使用的类加载器
+     * @return - 类对象
+     * @throws ClassNotFoundException Duh.
+     */
+    public Class<?> classForName(String name, ClassLoader classLoader) throws ClassNotFoundException {
+        return classForName(name, getClassLoaders(classLoader));
+    }
+
+    /**
      * 尝试从类加载器组中的加载器加载一个类
      *
      * @param name        - 需要被加载的类
