@@ -1,5 +1,6 @@
-package ahogek.com.github.ibatis.io;
+package cn.ahogek.ibatis.io;
 
+import cn.ahogek.ibatis.BaseDataTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * @author AhogeK ahogek@gmail.com
+ * @author AhogeK cn@gmail.ahogek
  * @since 2022-05-31 13:14:20
  */
-class ClassLoaderWrapperTest {
+class ClassLoaderWrapperTest extends BaseDataTest {
 
     private final String CLASS_FOUND = "java.lang.Object";
     private final String CLASS_NOT_FOUND = "some.random.class.that.does.not.Exist";
@@ -37,5 +38,10 @@ class ClassLoaderWrapperTest {
     @Test
     void classForNameWithClassLoader() throws ClassNotFoundException {
         assertNotNull(wrapper.classForName(CLASS_FOUND, loader));
+    }
+
+    @Test
+    void getResourceAsURL() {
+        assertNotNull(wrapper.getResourceAsURL(JPETSTORE_PROPERTIES));
     }
 }
