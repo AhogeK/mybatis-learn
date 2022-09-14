@@ -93,6 +93,17 @@ public class ClassLoaderWrapper {
     }
 
     /**
+     * 通过指定的类加载器获取指定类路径的资源输入流数据
+     *
+     * @param resource    查找的资源
+     * @param classLoader 类加载器
+     * @return 资源输入流或null
+     */
+    public InputStream getResourceAsStream(String resource, ClassLoader classLoader) {
+        return getResourceAsStream(resource, getClassLoaders(classLoader));
+    }
+
+    /**
      * 在类路径寻找类
      *
      * @param name - 需要寻找的完整类名
