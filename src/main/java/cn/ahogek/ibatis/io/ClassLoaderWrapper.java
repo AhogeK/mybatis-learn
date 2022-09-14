@@ -1,5 +1,6 @@
 package cn.ahogek.ibatis.io;
 
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -82,6 +83,16 @@ public class ClassLoaderWrapper {
     }
 
     /**
+     * 通过类路径获取资源
+     *
+     * @param resource 需要寻找的资源
+     * @return 资源的流对象或者null
+     */
+    public InputStream getResourceAsStream(String resource) {
+        return getResourceAsStream(resource, getClassLoaders(null));
+    }
+
+    /**
      * 在类路径寻找类
      *
      * @param name - 需要寻找的完整类名
@@ -122,6 +133,33 @@ public class ClassLoaderWrapper {
             }
         }
         throw new ClassNotFoundException("无法找到 " + name + " 类");
+    }
+
+    /**
+     * 尝试在类加载器列表中通过其中一个加载器获取资源
+     *
+     * @param resource    需要去获取的资源
+     * @param classLoader 用于检查使用的类加载列表
+     * @return 被寻找的资源或者null
+     */
+    InputStream getResourceAsStream(String resource, ClassLoader[] classLoader) {
+        for (ClassLoader cl : classLoader) {
+            if (null != cl) {
+
+                // 尝试去寻找已经传递的资源
+                InputStream returnValue = cl.getResourceAsStream(resource);
+
+                // 现在，一些类加载器会想要前置"/"，所以当资源为null时会尝试添加"/"前缀再进行获取
+                if (null == returnValue) {
+                    returnValue = cl.getResourceAsStream("/" + resource);
+                }
+
+                if (null != returnValue) {
+                    return returnValue;
+                }
+            }
+        }
+        return null;
     }
 
     ClassLoader[] getClassLoaders(ClassLoader classLoader) {

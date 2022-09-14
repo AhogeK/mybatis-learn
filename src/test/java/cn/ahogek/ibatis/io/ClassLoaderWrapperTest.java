@@ -56,4 +56,9 @@ class ClassLoaderWrapperTest extends BaseDataTest {
     void getResourceAsURLWithClassLoader() {
         assertNotNull(wrapper.getResourceAsURL(JPETSTORE_PROPERTIES, loader));
     }
+
+    @Test
+    void getResourceAsStream() {
+        assertNotNull(wrapper.getResourceAsStream(JPETSTORE_PROPERTIES));
+    }
 }
