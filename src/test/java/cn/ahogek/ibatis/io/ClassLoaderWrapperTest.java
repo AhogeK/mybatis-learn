@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * @author AhogeK cn@gmail.ahogek
+ * @author AhogeK ahogek@gmail.com
  * @since 2022-05-31 13:14:20
  */
 class ClassLoaderWrapperTest extends BaseDataTest {

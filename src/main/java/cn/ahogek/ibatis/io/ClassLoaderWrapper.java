@@ -5,7 +5,7 @@ import java.net.URL;
 /**
  * 用于包装多个类加载器，使他们在一个地方工作
  *
- * @author AhogeK cn@gmail.ahogek
+ * @author AhogeK ahogek@gmail.com
  * @since 2022-05-31 13:12:30
  */
 public class ClassLoaderWrapper {
@@ -84,7 +84,7 @@ public class ClassLoaderWrapper {
     /**
      * 在类路径寻找类
      *
-     * @param name - 需要寻找的类名
+     * @param name - 需要寻找的完整类名
      * @return - 类
      */
     public Object classForName(String name) throws ClassNotFoundException {
