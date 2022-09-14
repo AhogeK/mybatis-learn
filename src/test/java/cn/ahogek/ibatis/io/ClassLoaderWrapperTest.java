@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * @author AhogeK ahogek@gmail.com
@@ -15,6 +16,7 @@ class ClassLoaderWrapperTest extends BaseDataTest {
 
     private final String CLASS_FOUND = "java.lang.Object";
     private final String CLASS_NOT_FOUND = "some.random.class.that.does.not.Exist";
+    private final String RESOURCE_NOT_FOUND = "some_resource_that_does_not_exist.properties";
     private ClassLoaderWrapper wrapper;
     private ClassLoader loader;
 
@@ -43,5 +45,10 @@ class ClassLoaderWrapperTest extends BaseDataTest {
     @Test
     void getResourceAsURL() {
         assertNotNull(wrapper.getResourceAsURL(JPETSTORE_PROPERTIES));
+    }
+
+    @Test
+    void getResourceAsURLNotFound() {
+        assertNull(wrapper.getResourceAsURL(RESOURCE_NOT_FOUND));
     }
 }
