@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 
 /**
- * @author AhogeK cn@gmail.ahogek
+ * @author AhogeK ahogek@gmail.com
  * @since 2022-05-31 12:42:13
  */
-public class ResourceTest extends BaseDataTest {
+class ResourceTest extends BaseDataTest {
 
     private static final ClassLoader CLASS_LOADER = ResourceTest.class.getClassLoader();
 
@@ -19,5 +20,12 @@ public class ResourceTest extends BaseDataTest {
     void shouldGetUrlForResource() throws IOException {
         URL url = Resources.getResourceURL(JPETSTORE_PROPERTIES);
         Assertions.assertTrue(url.toString().endsWith("jpetstore/jpetstore-hsqldb.properties"));
+    }
+
+    @Test
+    void shouldGetUrlAsProperties() throws Exception {
+        URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
+        Properties props = Resources.getUrlAsProperties(url.toString());
+        Assertions.assertNotNull(props.getProperty("driver"));
     }
 }

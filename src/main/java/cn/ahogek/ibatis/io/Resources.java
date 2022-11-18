@@ -1,7 +1,10 @@
 package cn.ahogek.ibatis.io;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.Properties;
 
 /**
  * 一个类加载器简化对资源的访问的类
@@ -12,6 +15,10 @@ import java.net.URL;
 public class Resources {
 
     private static final ClassLoaderWrapper classLoaderWrapper = new ClassLoaderWrapper();
+
+    private Resources() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * 返回类路径资源的URL
@@ -41,5 +48,30 @@ public class Resources {
         return url;
     }
 
+    /**
+     * 通过 URL 字符串获取 Properties 对象
+     *
+     * @param urlString - URL 字符串
+     * @return 一个带有来自 URL 的数据的属性对象
+     */
+    public static Properties getUrlAsProperties(String urlString) throws IOException {
+        Properties props = new Properties();
+        try (InputStream in = getUrlAsStream(urlString)) {
+            props.load(in);
+        }
+        return props;
+    }
 
+    /**
+     * 通过 URL 字符串获取输入流对戏那个
+     *
+     * @param urlString - URL 字符串
+     * @return URL 数据的输入流
+     * @throws IOException 如果数据未找到或无法读取
+     */
+    private static InputStream getUrlAsStream(String urlString) throws IOException {
+        URL url = new URL(urlString);
+        URLConnection conn = url.openConnection();
+        return conn.getInputStream();
+    }
 }
