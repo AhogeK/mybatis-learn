@@ -1,6 +1,6 @@
-package cn.ahogek.ibatis.io;
+package com.ahogek.ibatis.io;
 
-import cn.ahogek.ibatis.BaseDataTest;
+import com.ahogek.ibatis.BaseDataTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

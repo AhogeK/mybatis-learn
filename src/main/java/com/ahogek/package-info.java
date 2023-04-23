@@ -4,4 +4,4 @@
  * @author AhogeK ahogek@gmail.com
  * @since 2022-07-14 13:48:03
  */
-package cn.ahogek;
+package com.ahogek;

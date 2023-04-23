@@ -1,4 +1,4 @@
-package cn.ahogek.ibatis.io;
+package com.ahogek.ibatis.io;
 
 import java.io.InputStream;
 import java.net.URL;

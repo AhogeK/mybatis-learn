@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'cn.ahogek'
+group 'com.ahogek'
 version '1.0-SNAPSHOT'
 
 java {
@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.hsqldb:hsqldb:2.6.1'
+    testImplementation 'org.hsqldb:hsqldb:2.7.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }

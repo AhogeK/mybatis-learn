@@ -1,4 +1,4 @@
-package cn.ahogek.ibatis.io;
+package com.ahogek.ibatis.io;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * 一个类加载器简化对资源的访问的类
  *
- * @author AhogeK cn@gmail.ahogek
+ * @author AhogeK com@gmail.ahogek
  * @since 2022-05-31 13:01:03
  */
 public class Resources {

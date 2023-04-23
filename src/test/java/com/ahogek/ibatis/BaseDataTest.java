@@ -1,7 +1,7 @@
-package cn.ahogek.ibatis;
+package com.ahogek.ibatis;
 
 /**
- * @author AhogeK cn@gmail.ahogek
+ * @author AhogeK com@gmail.ahogek
  * @since 2022-05-31 12:43:23
  */
 public abstract class BaseDataTest {
