@@ -27,5 +27,6 @@ class ResourceTest extends BaseDataTest {
         URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
         Properties props = Resources.getUrlAsProperties(url.toString());
         Assertions.assertNotNull(props.getProperty("driver"));
+        Assertions.assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
     }
 }

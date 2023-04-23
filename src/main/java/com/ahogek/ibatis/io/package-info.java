@@ -1,5 +1,5 @@
 /**
- * ibatis.io package info
+ * Utilities to read resources.
  *
  * @author AhogeK ahogek@gmail.com
  * @since 2022-07-14 13:48:43

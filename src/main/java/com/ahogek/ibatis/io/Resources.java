@@ -43,7 +43,7 @@ public class Resources {
     public static URL getResourceURL(ClassLoader loader, String resource) throws IOException {
         URL url = classLoaderWrapper.getResourceAsURL(resource, loader);
         if (url == null) {
-            throw new IOException("Could not find resource " + resource);
+            throw new IOException("无法找到资源 " + resource);
         }
         return url;
     }
