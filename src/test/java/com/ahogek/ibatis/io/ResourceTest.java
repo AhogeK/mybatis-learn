@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 import java.net.URL;
 import java.util.Properties;
 
@@ -42,6 +43,14 @@ class ResourceTest extends BaseDataTest {
     void shouldGetUrlAsStream() throws Exception {
         URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
         try (InputStream in = Resources.getUrlAsStream(url.toString())) {
+            Assertions.assertNotNull(in);
+        }
+    }
+
+    @Test
+    void shouldGetUrlAsReader() throws Exception {
+        URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
+        try (Reader in = Resources.getUrlAsReader(url.toString())) {
             Assertions.assertNotNull(in);
         }
     }

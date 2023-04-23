@@ -2,8 +2,11 @@ package com.ahogek.ibatis.io;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 /**
@@ -15,6 +18,11 @@ import java.util.Properties;
 public class Resources {
 
     private static final ClassLoaderWrapper classLoaderWrapper = new ClassLoaderWrapper();
+
+    /**
+     * 在调用getResourceAsReader时要使用的字符集。null表示使用系统默认值
+     */
+    private static Charset charset;
 
     private Resources() {
         throw new IllegalStateException("Utility class");
@@ -67,7 +75,7 @@ public class Resources {
     /**
      * 通过 URL 字符串获取 Properties 对象
      *
-     * @param urlString - URL 字符串
+     * @param urlString URL 字符串
      * @return 一个带有来自 URL 的数据的属性对象
      */
     public static Properties getUrlAsProperties(String urlString) throws IOException {
@@ -81,7 +89,7 @@ public class Resources {
     /**
      * 通过 URL 字符串获取输入流对戏那个
      *
-     * @param urlString - URL 字符串
+     * @param urlString URL 字符串
      * @return URL 数据的输入流
      * @throws IOException 如果数据未找到或无法读取
      */
@@ -89,6 +97,23 @@ public class Resources {
         URL url = new URL(urlString);
         URLConnection conn = url.openConnection();
         return conn.getInputStream();
+    }
+
+    /**
+     * 通过 URL 字符串获取 Reader 对象
+     *
+     * @param urlString URL 字符串
+     * @return URL 数据的 Reader 对象
+     * @throws IOException 如果数据未找到或无法读取
+     */
+    public static Reader getUrlAsReader(String urlString) throws IOException {
+        Reader reader;
+        if (charset == null) {
+            reader = new InputStreamReader(getUrlAsStream(urlString));
+        } else {
+            reader = new InputStreamReader(getUrlAsStream(urlString), charset);
+        }
+        return reader;
     }
 
     /**
@@ -105,5 +130,13 @@ public class Resources {
             props.load(in);
         }
         return props;
+    }
+
+    public static Charset getCharset() {
+        return charset;
+    }
+
+    public static void setCharset(Charset charset) {
+        Resources.charset = charset;
     }
 }
