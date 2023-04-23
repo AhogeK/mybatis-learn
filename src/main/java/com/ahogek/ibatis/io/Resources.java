@@ -117,6 +117,24 @@ public class Resources {
     }
 
     /**
+     * 将类路径上的资源作为Reader对象返回
+     *
+     * @param loader   用于获取资源的类加载器
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
+     */
+    public static Reader getResourceAsReader(ClassLoader loader, String resource) throws IOException {
+        Reader reader;
+        if (charset == null) {
+            reader = new InputStreamReader(getResourceAsStream(loader, resource));
+        } else {
+            reader = new InputStreamReader(getResourceAsStream(loader, resource), charset);
+        }
+        return reader;
+    }
+
+    /**
      * 将类路径上的资源作为Properties对象返回
      *
      * @param loader   用于获取资源的类加载器
