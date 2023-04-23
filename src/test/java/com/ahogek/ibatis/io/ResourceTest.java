@@ -4,6 +4,7 @@ import com.ahogek.ibatis.BaseDataTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
@@ -81,5 +82,12 @@ class ResourceTest extends BaseDataTest {
         try (Reader in = Resources.getResourceAsReader(CLASS_LOADER, JPETSTORE_PROPERTIES)) {
             Assertions.assertNotNull(in);
         }
+    }
+
+    @Test
+    void shouldGetResourceAsFile() throws Exception {
+        File file = Resources.getResourceAsFile(JPETSTORE_PROPERTIES);
+        Assertions.assertTrue(file.getAbsolutePath().replace('\\', '/')
+                .endsWith("jpetstore/jpetstore-hsqldb.properties"));
     }
 }

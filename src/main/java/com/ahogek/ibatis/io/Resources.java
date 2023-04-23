@@ -1,9 +1,6 @@
 package com.ahogek.ibatis.io;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
@@ -140,6 +137,17 @@ public class Resources {
             reader = new InputStreamReader(getResourceAsStream(loader, resource), charset);
         }
         return reader;
+    }
+
+    /**
+     * 将类路径上的资源作为File对象返回
+     *
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
+     */
+    public static File getResourceAsFile(String resource) throws IOException {
+        return new File(getResourceURL(resource).getFile());
     }
 
 
