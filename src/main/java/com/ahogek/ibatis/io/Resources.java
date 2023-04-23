@@ -49,6 +49,22 @@ public class Resources {
     }
 
     /**
+     * 将类路径上的资源作为Stream对象返回
+     *
+     * @param loader   用于获取资源的类加载器
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
+     */
+    public static InputStream getResourceAsStream(ClassLoader loader, String resource) throws IOException {
+        InputStream in = classLoaderWrapper.getResourceAsStream(resource, loader);
+        if (in == null) {
+            throw new IOException("无法找到资源 " + resource);
+        }
+        return in;
+    }
+
+    /**
      * 通过 URL 字符串获取 Properties 对象
      *
      * @param urlString - URL 字符串
@@ -69,26 +85,10 @@ public class Resources {
      * @return URL 数据的输入流
      * @throws IOException 如果数据未找到或无法读取
      */
-    private static InputStream getUrlAsStream(String urlString) throws IOException {
+    public static InputStream getUrlAsStream(String urlString) throws IOException {
         URL url = new URL(urlString);
         URLConnection conn = url.openConnection();
         return conn.getInputStream();
-    }
-
-    /**
-     * 将类路径上的资源作为Stream对象返回
-     *
-     * @param loader   用于获取资源的类加载器
-     * @param resource 要查找的资源
-     * @return 被找到的资源
-     * @throws IOException 如果无法找到或读取该资源
-     */
-    public static InputStream getResourceAsStream(ClassLoader loader, String resource) throws IOException {
-        InputStream in = classLoaderWrapper.getResourceAsStream(resource, loader);
-        if (in == null) {
-            throw new IOException("无法找到资源 " + resource);
-        }
-        return in;
     }
 
     /**

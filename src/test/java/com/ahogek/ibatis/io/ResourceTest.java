@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
@@ -35,5 +36,13 @@ class ResourceTest extends BaseDataTest {
         Properties props = Resources.getResourceAsProperties(CLASS_LOADER, JPETSTORE_PROPERTIES);
         Assertions.assertNotNull(props.getProperty("driver"));
         Assertions.assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
+    }
+
+    @Test
+    void shouldGetUrlAsStream() throws Exception {
+        URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
+        try (InputStream in = Resources.getUrlAsStream(url.toString())) {
+            Assertions.assertNotNull(in);
+        }
     }
 }
