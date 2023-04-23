@@ -74,4 +74,36 @@ public class Resources {
         URLConnection conn = url.openConnection();
         return conn.getInputStream();
     }
+
+    /**
+     * 将类路径上的资源作为Stream对象返回
+     *
+     * @param loader   用于获取资源的类加载器
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
+     */
+    public static InputStream getResourceAsStream(ClassLoader loader, String resource) throws IOException {
+        InputStream in = classLoaderWrapper.getResourceAsStream(resource, loader);
+        if (in == null) {
+            throw new IOException("无法找到资源 " + resource);
+        }
+        return in;
+    }
+
+    /**
+     * 将类路径上的资源作为Properties对象返回
+     *
+     * @param loader   用于获取资源的类加载器
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
+     */
+    public static Properties getResourceAsProperties(ClassLoader loader, String resource) throws IOException {
+        Properties props = new Properties();
+        try (InputStream in = getResourceAsStream(loader, resource)) {
+            props.load(in);
+        }
+        return props;
+    }
 }

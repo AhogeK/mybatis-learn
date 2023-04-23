@@ -29,4 +29,11 @@ class ResourceTest extends BaseDataTest {
         Assertions.assertNotNull(props.getProperty("driver"));
         Assertions.assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
     }
+
+    @Test
+    void shouldGetResourceAsProperties() throws Exception {
+        Properties props = Resources.getResourceAsProperties(CLASS_LOADER, JPETSTORE_PROPERTIES);
+        Assertions.assertNotNull(props.getProperty("driver"));
+        Assertions.assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
+    }
 }
