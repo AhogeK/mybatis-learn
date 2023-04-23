@@ -12,7 +12,7 @@ import java.util.Properties;
 /**
  * 一个类加载器简化对资源的访问的类
  *
- * @author AhogeK com@gmail.ahogek
+ * @author AhogeK ahogek@gmail.com
  * @since 2022-05-31 13:01:03
  */
 public class Resources {
