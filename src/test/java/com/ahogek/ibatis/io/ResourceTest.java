@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -135,5 +136,23 @@ class ResourceTest extends BaseDataTest {
     @Test
     void shouldNotFindThisClass() {
         assertThrows(ClassNotFoundException.class, () -> Resources.classForName("some.random.class.name"));
+    }
+
+    @Test
+    void shouldGetReader() throws IOException {
+
+        // 保存初始值
+        Charset charset = Resources.getCharset();
+
+        // 指定字符集
+        Resources.setCharset(StandardCharsets.US_ASCII);
+        assertNotNull(Resources.getResourceAsReader(JPETSTORE_PROPERTIES));
+
+        // 没有字符集
+        Resources.setCharset(null);
+        assertNotNull(Resources.getResourceAsReader(JPETSTORE_PROPERTIES));
+
+        // 重制
+        Resources.setCharset(charset);
     }
 }
