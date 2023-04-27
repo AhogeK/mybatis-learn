@@ -131,4 +131,9 @@ class ResourceTest extends BaseDataTest {
         Class<?> clazz = Resources.classForName(ResourceTest.class.getName());
         assertNotNull(clazz);
     }
+
+    @Test
+    void shouldNotFindThisClass() {
+        assertThrows(ClassNotFoundException.class, () -> Resources.classForName("some.random.class.name"));
+    }
 }
