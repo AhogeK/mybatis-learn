@@ -81,14 +81,15 @@ public class Resources {
     }
 
     /**
-     * 通过 URL 字符串获取 Properties 对象
+     * 将类路径上的资源作为Properties对象返回
      *
-     * @param urlString URL 字符串
-     * @return 一个带有来自 URL 的数据的属性对象
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
      */
-    public static Properties getUrlAsProperties(String urlString) throws IOException {
+    public static Properties getResourceAsProperties(String resource) throws IOException {
         Properties props = new Properties();
-        try (InputStream in = getUrlAsStream(urlString)) {
+        try (InputStream in = getResourceAsStream(resource)) {
             props.load(in);
         }
         return props;
@@ -191,6 +192,20 @@ public class Resources {
             reader = new InputStreamReader(getUrlAsStream(urlString), charset);
         }
         return reader;
+    }
+
+    /**
+     * 通过 URL 字符串获取 Properties 对象
+     *
+     * @param urlString URL 字符串
+     * @return 一个带有来自 URL 的数据的属性对象
+     */
+    public static Properties getUrlAsProperties(String urlString) throws IOException {
+        Properties props = new Properties();
+        try (InputStream in = getUrlAsStream(urlString)) {
+            props.load(in);
+        }
+        return props;
     }
 
     public static Charset getCharset() {

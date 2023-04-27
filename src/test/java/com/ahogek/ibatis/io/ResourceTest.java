@@ -98,4 +98,11 @@ class ResourceTest extends BaseDataTest {
         assertTrue(file.getAbsolutePath().replace('\\', '/')
                 .endsWith("jpetstore/jpetstore-hsqldb.properties"));
     }
+
+    @Test
+    void shouldGetResourceAsPropertiesWithOutClassloader() throws Exception {
+        Properties props = Resources.getResourceAsProperties(JPETSTORE_PROPERTIES);
+        assertNotNull(props.getProperty("driver"));
+        assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
+    }
 }
