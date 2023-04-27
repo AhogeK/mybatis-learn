@@ -112,4 +112,10 @@ class ResourceTest extends BaseDataTest {
         assertNotNull(file.getProperty("driver"));
         assertEquals("org.hsqldb.jdbcDriver", file.getProperty("driver"));
     }
+
+    @Test
+    void shouldAllowDefaultClassLoaderToBeSet() {
+        Resources.setDefaultClassLoader(this.getClass().getClassLoader());
+        assertEquals(this.getClass().getClassLoader(), Resources.getDefaultClassLoader());
+    }
 }

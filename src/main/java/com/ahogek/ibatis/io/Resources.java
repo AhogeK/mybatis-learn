@@ -26,6 +26,24 @@ public class Resources {
     }
 
     /**
+     * 返回默认类加载器（可能为null）
+     *
+     * @return 默认类加载器
+     */
+    public static ClassLoader getDefaultClassLoader() {
+        return classLoaderWrapper.defaultClassLoader;
+    }
+
+    /**
+     * 设置默认类加载器
+     *
+     * @param defaultClassLoader 新的默认类加载器
+     */
+    public static void setDefaultClassLoader(ClassLoader defaultClassLoader) {
+        classLoaderWrapper.defaultClassLoader = defaultClassLoader;
+    }
+
+    /**
      * 返回类路径资源的URL
      *
      * @param resource 需要被寻找的资源
