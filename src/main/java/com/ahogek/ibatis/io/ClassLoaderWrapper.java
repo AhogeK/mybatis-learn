@@ -108,8 +108,9 @@ public class ClassLoaderWrapper {
      *
      * @param name - 需要寻找的完整类名
      * @return - 类
+     * @throws ClassNotFoundException - 如果类没有找到
      */
-    public Object classForName(String name) throws ClassNotFoundException {
+    public Class<?> classForName(String name) throws ClassNotFoundException {
         return classForName(name, getClassLoaders(null));
     }
 

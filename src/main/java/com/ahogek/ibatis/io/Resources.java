@@ -226,6 +226,17 @@ public class Resources {
         return props;
     }
 
+    /**
+     * 加载一个类
+     *
+     * @param className 要加载的类的完全限定名
+     * @return 加载的类
+     * @throws ClassNotFoundException 如果找不到该类
+     */
+    public static Class<?> classForName(String className) throws ClassNotFoundException {
+        return classLoaderWrapper.classForName(className);
+    }
+
     public static Charset getCharset() {
         return charset;
     }

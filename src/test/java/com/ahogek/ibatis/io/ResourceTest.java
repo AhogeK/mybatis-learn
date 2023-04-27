@@ -125,4 +125,10 @@ class ResourceTest extends BaseDataTest {
         Resources.setCharset(Charset.defaultCharset());
         assertEquals(Charset.defaultCharset(), Resources.getCharset());
     }
+
+    @Test
+    void shouldGetClassForName() throws Exception {
+        Class<?> clazz = Resources.classForName(ResourceTest.class.getName());
+        assertNotNull(clazz);
+    }
 }
