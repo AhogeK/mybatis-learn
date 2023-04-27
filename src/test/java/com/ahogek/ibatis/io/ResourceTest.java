@@ -155,4 +155,22 @@ class ResourceTest extends BaseDataTest {
         // 重制
         Resources.setCharset(charset);
     }
+
+    @Test
+    void shouldGetReaderWithClassLoader() throws IOException {
+
+        // 保存初始值
+        Charset charset = Resources.getCharset();
+
+        // 指定字符集
+        Resources.setCharset(StandardCharsets.US_ASCII);
+        assertNotNull(Resources.getResourceAsReader(getClass().getClassLoader(), JPETSTORE_PROPERTIES));
+
+        // 没有字符集
+        Resources.setCharset(null);
+        assertNotNull(Resources.getResourceAsReader(getClass().getClassLoader(), JPETSTORE_PROPERTIES));
+
+        // 重制
+        Resources.setCharset(charset);
+    }
 }
