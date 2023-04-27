@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -117,5 +118,11 @@ class ResourceTest extends BaseDataTest {
     void shouldAllowDefaultClassLoaderToBeSet() {
         Resources.setDefaultClassLoader(this.getClass().getClassLoader());
         assertEquals(this.getClass().getClassLoader(), Resources.getDefaultClassLoader());
+    }
+
+    @Test
+    void shouldAllowDefaultCharsetToBeSet() {
+        Resources.setCharset(Charset.defaultCharset());
+        assertEquals(Charset.defaultCharset(), Resources.getCharset());
     }
 }
