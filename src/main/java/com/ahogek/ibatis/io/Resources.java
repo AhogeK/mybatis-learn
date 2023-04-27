@@ -150,6 +150,18 @@ public class Resources {
         return new File(getResourceURL(resource).getFile());
     }
 
+    /**
+     * 将类路径上的资源作为File对象返回
+     *
+     * @param loader   用于获取资源的类加载器
+     * @param resource 要查找的资源
+     * @return 被找到的资源
+     * @throws IOException 如果无法找到或读取该资源
+     */
+    public static File getResourceAsFile(ClassLoader loader, String resource) throws IOException {
+        return new File(getResourceURL(loader, resource).getFile());
+    }
+
 
     /**
      * 通过 URL 字符串获取输入流对戏那个

@@ -1,7 +1,6 @@
 package com.ahogek.ibatis.io;
 
 import com.ahogek.ibatis.BaseDataTest;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -10,6 +9,8 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.net.URL;
 import java.util.Properties;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author AhogeK ahogek@gmail.com
@@ -22,29 +23,29 @@ class ResourceTest extends BaseDataTest {
     @Test
     void shouldGetUrlForResource() throws IOException {
         URL url = Resources.getResourceURL(JPETSTORE_PROPERTIES);
-        Assertions.assertTrue(url.toString().endsWith("jpetstore/jpetstore-hsqldb.properties"));
+        assertTrue(url.toString().endsWith("jpetstore/jpetstore-hsqldb.properties"));
     }
 
     @Test
     void shouldGetUrlAsProperties() throws Exception {
         URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
         Properties props = Resources.getUrlAsProperties(url.toString());
-        Assertions.assertNotNull(props.getProperty("driver"));
-        Assertions.assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
+        assertNotNull(props.getProperty("driver"));
+        assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
     }
 
     @Test
     void shouldGetResourceAsProperties() throws Exception {
         Properties props = Resources.getResourceAsProperties(CLASS_LOADER, JPETSTORE_PROPERTIES);
-        Assertions.assertNotNull(props.getProperty("driver"));
-        Assertions.assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
+        assertNotNull(props.getProperty("driver"));
+        assertEquals("org.hsqldb.jdbcDriver", props.getProperty("driver"));
     }
 
     @Test
     void shouldGetUrlAsStream() throws Exception {
         URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
         try (InputStream in = Resources.getUrlAsStream(url.toString())) {
-            Assertions.assertNotNull(in);
+            assertNotNull(in);
         }
     }
 
@@ -52,42 +53,49 @@ class ResourceTest extends BaseDataTest {
     void shouldGetUrlAsReader() throws Exception {
         URL url = Resources.getResourceURL(CLASS_LOADER, JPETSTORE_PROPERTIES);
         try (Reader in = Resources.getUrlAsReader(url.toString())) {
-            Assertions.assertNotNull(in);
+            assertNotNull(in);
         }
     }
 
     @Test
     void shouldGetResourceAsStreamWithoutClassLoader() throws Exception {
         try (InputStream in = Resources.getResourceAsStream(JPETSTORE_PROPERTIES)) {
-            Assertions.assertNotNull(in);
+            assertNotNull(in);
         }
     }
 
     @Test
     void shouldGetResourceAsStream() throws Exception {
         try (InputStream in = Resources.getResourceAsStream(CLASS_LOADER, JPETSTORE_PROPERTIES)) {
-            Assertions.assertNotNull(in);
+            assertNotNull(in);
         }
     }
 
     @Test
     void shouldGetResourceAsReaderWithoutClassLoader() throws Exception {
         try (Reader in = Resources.getResourceAsReader(JPETSTORE_PROPERTIES)) {
-            Assertions.assertNotNull(in);
+            assertNotNull(in);
         }
     }
 
     @Test
     void shouldGetResourceAsReader() throws Exception {
         try (Reader in = Resources.getResourceAsReader(CLASS_LOADER, JPETSTORE_PROPERTIES)) {
-            Assertions.assertNotNull(in);
+            assertNotNull(in);
         }
     }
 
     @Test
     void shouldGetResourceAsFile() throws Exception {
         File file = Resources.getResourceAsFile(JPETSTORE_PROPERTIES);
-        Assertions.assertTrue(file.getAbsolutePath().replace('\\', '/')
+        assertTrue(file.getAbsolutePath().replace('\\', '/')
+                .endsWith("jpetstore/jpetstore-hsqldb.properties"));
+    }
+
+    @Test
+    void shouldGetResourceAsFileWithClassloader() throws Exception {
+        File file = Resources.getResourceAsFile(CLASS_LOADER, JPETSTORE_PROPERTIES);
+        assertTrue(file.getAbsolutePath().replace('\\', '/')
                 .endsWith("jpetstore/jpetstore-hsqldb.properties"));
     }
 }
