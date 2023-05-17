@@ -25,9 +25,9 @@ class LogFactoryTest {
     }
 
     private void logSomething(Log log) {
-        log.warn("Warning message.");
-        log.debug("Debug message.");
-        log.error("Error message.");
-        log.error("Error message with Exception.", new RuntimeException("Test exception."));
+        log.warn("这是一条警告信息。");
+        log.debug("这是一条调试信息。");
+        log.error("这是一条错误信息。");
+        log.error("这是一条错误信息。", new RuntimeException("这是一个运行时异常。"));
     }
 }
