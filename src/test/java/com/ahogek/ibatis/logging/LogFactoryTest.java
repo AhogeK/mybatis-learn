@@ -1,9 +1,11 @@
 package com.ahogek.ibatis.logging;
 
+import com.ahogek.ibatis.logging.commons.JakartaCommonsLoggingImpl;
 import com.ahogek.ibatis.logging.slf4j.Slf4jImpl;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author AhogeK ahogek@gmail.com
@@ -21,7 +23,15 @@ class LogFactoryTest {
         LogFactory.useSlf4jLogging();
         Log log = LogFactory.getLog(Object.class);
         logSomething(log);
-        Assertions.assertEquals(log.getClass().getName(), Slf4jImpl.class.getName());
+        assertEquals(log.getClass().getName(), Slf4jImpl.class.getName());
+    }
+
+    @Test
+    void shouldUseCommonsLogging() {
+        LogFactory.useCommonsLogging();
+        Log log = LogFactory.getLog(Object.class);
+        logSomething(log);
+        assertEquals(log.getClass().getName(), JakartaCommonsLoggingImpl.class.getName());
     }
 
     private void logSomething(Log log) {

@@ -21,6 +21,7 @@ public class LogFactory {
 
     static {
         tryImplementation(LogFactory::useSlf4jLogging);
+        tryImplementation(LogFactory::useCommonsLogging);
     }
 
     private LogFactory() {
@@ -43,6 +44,13 @@ public class LogFactory {
      */
     public static synchronized void useSlf4jLogging() {
         setImplementation(com.ahogek.ibatis.logging.slf4j.Slf4jImpl.class);
+    }
+
+    /**
+     * 使用 apache commons 日志实现
+     */
+    public static synchronized void useCommonsLogging() {
+        setImplementation(com.ahogek.ibatis.logging.commons.JakartaCommonsLoggingImpl.class);
     }
 
     /**

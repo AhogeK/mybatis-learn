@@ -2,12 +2,15 @@ package com.ahogek.ibatis.logging;
 
 import com.ahogek.ibatis.exceptions.PersistenceException;
 
+import java.io.Serial;
+
 /**
  * @author AhogeK ahogek@gmail.com
  * @since 2023-05-17 14:49:19
  */
 public class LogException extends PersistenceException {
 
+    @Serial
     private static final long serialVersionUID = 6581227420929504274L;
 
     public LogException() {
