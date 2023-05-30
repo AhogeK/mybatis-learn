@@ -22,6 +22,7 @@ public class LogFactory {
     static {
         tryImplementation(LogFactory::useSlf4jLogging);
         tryImplementation(LogFactory::useCommonsLogging);
+        tryImplementation(LogFactory::useLog4J2Logging);
     }
 
     private LogFactory() {
@@ -51,6 +52,13 @@ public class LogFactory {
      */
     public static synchronized void useCommonsLogging() {
         setImplementation(com.ahogek.ibatis.logging.commons.JakartaCommonsLoggingImpl.class);
+    }
+
+    /**
+     * 使用 log4j2 日志实现
+     */
+    public static synchronized void useLog4J2Logging() {
+        setImplementation(com.ahogek.ibatis.logging.log4j2.Log4j2Impl.class);
     }
 
     /**
