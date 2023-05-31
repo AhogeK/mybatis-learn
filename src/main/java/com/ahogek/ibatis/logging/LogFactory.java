@@ -24,6 +24,7 @@ public class LogFactory {
         tryImplementation(LogFactory::useCommonsLogging);
         tryImplementation(LogFactory::useLog4J2Logging);
         tryImplementation(LogFactory::useJdkLogging);
+        tryImplementation(LogFactory::useNoLogging);
     }
 
     private LogFactory() {
@@ -67,6 +68,10 @@ public class LogFactory {
      */
     public static synchronized void useJdkLogging() {
         setImplementation(com.ahogek.ibatis.logging.jdk14.Jdk14LoggingImpl.class);
+    }
+
+    public static synchronized void useNoLogging() {
+        setImplementation(com.ahogek.ibatis.logging.nologging.NoLoggingImpl.class);
     }
 
     /**
