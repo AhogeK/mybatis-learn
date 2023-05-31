@@ -1,6 +1,7 @@
 package com.ahogek.ibatis.logging;
 
 import com.ahogek.ibatis.logging.commons.JakartaCommonsLoggingImpl;
+import com.ahogek.ibatis.logging.jdk14.Jdk14LoggingImpl;
 import com.ahogek.ibatis.logging.log4j2.Log4j2Impl;
 import com.ahogek.ibatis.logging.slf4j.Slf4jImpl;
 import org.junit.jupiter.api.AfterAll;
@@ -41,6 +42,14 @@ class LogFactoryTest {
         Log log = LogFactory.getLog(Object.class);
         logSomething(log);
         assertEquals(log.getClass().getName(), Log4j2Impl.class.getName());
+    }
+
+    @Test
+    void shouldUseJdkLogging() {
+        LogFactory.useJdkLogging();
+        Log log = LogFactory.getLog(Object.class);
+        logSomething(log);
+        assertEquals(log.getClass().getName(), Jdk14LoggingImpl.class.getName());
     }
 
     private void logSomething(Log log) {
