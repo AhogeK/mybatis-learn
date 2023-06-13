@@ -70,6 +70,16 @@ public class LogFactory {
         setImplementation(com.ahogek.ibatis.logging.jdk14.Jdk14LoggingImpl.class);
     }
 
+    /**
+     * 使用标准输出日志实现
+     */
+    public static synchronized void useStdOutLogging() {
+        setImplementation(com.ahogek.ibatis.logging.stdout.StdOutImpl.class);
+    }
+
+    /**
+     * 使用无日志实现
+     */
     public static synchronized void useNoLogging() {
         setImplementation(com.ahogek.ibatis.logging.nologging.NoLoggingImpl.class);
     }

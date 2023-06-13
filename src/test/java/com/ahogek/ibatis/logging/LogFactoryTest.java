@@ -5,6 +5,7 @@ import com.ahogek.ibatis.logging.jdk14.Jdk14LoggingImpl;
 import com.ahogek.ibatis.logging.log4j2.Log4j2Impl;
 import com.ahogek.ibatis.logging.nologging.NoLoggingImpl;
 import com.ahogek.ibatis.logging.slf4j.Slf4jImpl;
+import com.ahogek.ibatis.logging.stdout.StdOutImpl;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +52,14 @@ class LogFactoryTest {
         Log log = LogFactory.getLog(Object.class);
         logSomething(log);
         assertEquals(log.getClass().getName(), Jdk14LoggingImpl.class.getName());
+    }
+
+    @Test
+    void shouldUseStdOut() {
+        LogFactory.useStdOutLogging();
+        Log log = LogFactory.getLog(Object.class);
+        logSomething(log);
+        assertEquals(log.getClass().getName(), StdOutImpl.class.getName());
     }
 
     @Test

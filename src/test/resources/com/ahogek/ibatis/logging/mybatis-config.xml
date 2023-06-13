@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//ahogek.com//DTD Config 3.0//EN"
+        "com/ahogek/ibatis/builder/xml/mybatis-learn-config.dtd">
+
+<configuration>
+
+    <settings>
+        <setting type="logImpl" value="NO_LOGGING"/>
+    </settings>
+
+</configuration>

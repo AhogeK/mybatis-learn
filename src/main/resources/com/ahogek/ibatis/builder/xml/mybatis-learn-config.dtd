@@ -14,7 +14,7 @@ url CDATA #IMPLIED
 <!ELEMENT setting EMPTY>
 <!ATTLIST setting
 type CDATA #REQUIRED
-alias CDATA #IMPLIED
+        value CDATA #REQUIRED
 >
 
 <!ELEMENT typeAliases (typeAlias*, package*)>
