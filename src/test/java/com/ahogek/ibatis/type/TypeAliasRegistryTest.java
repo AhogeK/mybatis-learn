@@ -43,4 +43,11 @@ class TypeAliasRegistryTest {
         TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
         assertThrows(TypeException.class, () -> typeAliasRegistry.registerAlias("string", BigDecimal.class));
     }
+
+    @Test
+    void shouldBeAbleToRegisterAliasWithNullType() {
+        TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+        typeAliasRegistry.registerAlias("foo", (Class<?>) null);
+        assertNull(typeAliasRegistry.resolveAlias("foo"));
+    }
 }
