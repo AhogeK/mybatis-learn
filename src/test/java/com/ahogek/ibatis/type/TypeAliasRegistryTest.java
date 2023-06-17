@@ -2,8 +2,9 @@ package com.ahogek.ibatis.type;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * 类型别名注册单元测试
@@ -35,5 +36,11 @@ class TypeAliasRegistryTest {
             typeAliasRegistry.registerAlias("String", String.class);
             typeAliasRegistry.registerAlias("string", String.class);
         });
+    }
+
+    @Test
+    void shouldNotBeAbleToRegisterSameAliasWithDifferentType() {
+        TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+        assertThrows(TypeException.class, () -> typeAliasRegistry.registerAlias("string", BigDecimal.class));
     }
 }
