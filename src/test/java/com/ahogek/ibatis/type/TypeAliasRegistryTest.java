@@ -2,6 +2,7 @@ package com.ahogek.ibatis.type;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -25,5 +26,14 @@ class TypeAliasRegistryTest {
     void shouldFetchArrayType() {
         TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
         assertEquals(Byte[].class, typeAliasRegistry.resolveAlias("byte[]"));
+    }
+
+    @Test
+    void shouldBeAbleToRegisterSameAliasWithSameTypeAgain() {
+        TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+        assertDoesNotThrow(() -> {
+            typeAliasRegistry.registerAlias("String", String.class);
+            typeAliasRegistry.registerAlias("string", String.class);
+        });
     }
 }
