@@ -50,4 +50,13 @@ class TypeAliasRegistryTest {
         typeAliasRegistry.registerAlias("foo", (Class<?>) null);
         assertNull(typeAliasRegistry.resolveAlias("foo"));
     }
+
+    @Test
+    void shouldBeAbleToRegisterNewTypeIfRegisteredTypeIsNull() {
+        TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+        assertDoesNotThrow(() -> {
+            typeAliasRegistry.registerAlias("foo", (Class<?>) null);
+            typeAliasRegistry.registerAlias("foo", String.class);
+        });
+    }
 }
