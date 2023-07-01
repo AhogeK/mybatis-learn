@@ -9,11 +9,9 @@
 加深理解，过程会对各个函数的文档注释进行翻译，以便更好的理解。
 
 <!-- TOC -->
-
 * [mybatis-learn](#mybatis-learn)
-    * [io](#io)
-        * [ClassLoaderWrapper](#classloaderwrapper)
-
+  * [io](#io)
+    * [ClassLoaderWrapper](#classloaderwrapper)
 <!-- TOC -->
 
 ## io
