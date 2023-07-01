@@ -12,13 +12,17 @@
 * [mybatis-learn](#mybatis-learn)
   * [io](#io)
     * [ClassLoaderWrapper](#classloaderwrapper)
+    * [Resources](#resources)
 <!-- TOC -->
 
 ## io
 
 ### ClassLoaderWrapper
 
-这是我第一个开始阅读的类
+这是我第一个开始阅读的类，为什么是第一个主要是我是从单元测试入手，而看源代码单元测试映入眼帘的就是最外面的 `BaseDataTest`
+，而阅读该
+单元测试类，就会发现第一个测试使用了 `Resource` 类，而 `Resource` 类中第一行就使用了 `ClassLoaderWrapper`，也是为什么我先看了
+`ClassLoaderWrapper`类
 
 * [ClassLoaderWrapperTest.java](src/test/java/com/ahogek/ibatis/io/ClassLoaderWrapperTest.java)
 * [ClassLoaderWrapper.java](src/main/java/com/ahogek/ibatis/io/ClassLoaderWrapper.java)
@@ -42,5 +46,13 @@ java {
 
 编写中还添加了 `BaseDataTest.java` 主要是配置一些io包中测试需要用到的一些基础数据，在阅读`ClassLoaderWrapper`时还没有特别丰富的内容
 
-`ClassLoaderWrapper` 主要包括通过全路径类名获取类，指定类加载器的同时通过全路将类名获取类，*URL*获取资源，通过流获取资源，以及相关指定
-类加载器的同时的获取方法
+### Resources
+
+* [ResourcesTest.java](src/test/java/com/ahogek/ibatis/io/ResourceTest.java)
+* [Resources.java](src/main/java/com/ahogek/ibatis/io/Resources.java)
+
+`Resources` 这个类是加载器简化对资源的访问的类
+
+在阅读完 `Resources` 后，我想直接先看完 `io` 包下的所有类然后再回到 `BaseDataTest` 中，但在开始看 `io` 包中抽象类 `VFS`
+时，注意
+到了使用了 `log` 包下的 `Log` 接口，因此，接下来我先开始阅读起了 `log` 包
