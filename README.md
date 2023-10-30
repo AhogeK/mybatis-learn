@@ -13,6 +13,7 @@
   * [io](#io)
     * [ClassLoaderWrapper](#classloaderwrapper)
     * [Resources](#resources)
+  * [logging](#logging)
 <!-- TOC -->
 
 ## io
@@ -20,7 +21,9 @@
 ### ClassLoaderWrapper
 
 这是我第一个开始阅读的类，为什么是第一个主要是我是从单元测试入手，而看源代码单元测试映入眼帘的就是最外面的 `BaseDataTest`
-，而阅读该单元测试类，就会发现第一个测试使用了 `Resource` 类，而 `Resource` 类中第一行就使用了 `ClassLoaderWrapper`
+，而阅读该单元测试类，就会发现第一个测试使用了的返回使用了`UnpooledDataSource` 而 `UnpooledDataSource` 的单元测试中
+使用了该类的 `initializerDriver` 函数，该函数中使用了
+`Resource` 类，而 `Resource` 类中第一行就使用了 `ClassLoaderWrapper`
 ，也是为什么我先看了 `ClassLoaderWrapper`类
 
 * [ClassLoaderWrapperTest.java](src/test/java/com/ahogek/ibatis/io/ClassLoaderWrapperTest.java)
